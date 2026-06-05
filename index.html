@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JYDA FOOTWEARS | Luxury Performance Footwear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #151515;
+            --charcoal: #202225;
+            --stone: #f2eee8;
+            --paper: #fbfaf7;
+            --line: rgba(21, 21, 21, 0.12);
+            --gold: #b08a45;
+            --clay: #a65f46;
+            --sage: #65766b;
+            --white: #ffffff;
+            --shadow: 0 24px 70px rgba(22, 20, 17, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.5;
+            animation: pageLoad 1s ease;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        @keyframes pageLoad {
+            from { opacity: 0; transform: scale(.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--white);
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .site-header.is-scrolled,
+        .site-header.is-open {
+            background: rgba(251, 250, 247, 0.94);
+            color: var(--ink);
+            border-color: var(--line);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav {
+            width: min(1180px, calc(100% - 32px));
+            min-height: 74px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border: 1px solid currentColor;
+            display: grid;
+            place-items: center;
+            font-size: 0.72rem;
+            letter-spacing: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            opacity: 0.86;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-btn,
+        .menu-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid currentColor;
+            background: transparent;
+            color: inherit;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .icon-btn:hover,
+        .menu-btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        .cart-count {
+            position: absolute;
+            transform: translate(12px, -12px);
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: var(--gold);
+            color: var(--white);
+            font-size: 0.68rem;
+            font-weight: 800;
+            display: grid;
+            place-items: center;
+        }
+
+        .hero {
+            min-height: 100svh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            isolation: isolate;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(13, 12, 10, 0.92) 0%, rgba(13, 12, 10, 0.72) 38%, rgba(13, 12, 10, 0.28) 72%),
+                url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=2200&q=85") center / cover;
+            animation: heroFloat 8s ease-in-out infinite, heroZoom 14s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 34%;
+            z-index: -1;
+            background: linear-gradient(0deg, rgba(21, 21, 21, 0.84), rgba(21, 21, 21, 0));
+        }
+
+        @keyframes heroFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes heroZoom {
+            from { background-size: 100%; }
+            to { background-size: 108%; }
+        }
+
+        .hero-inner {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 140px 0 42px;
+            display: grid;
+            grid-template-columns: minmax(0, 690px) 1fr;
+            gap: 36px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: #d9c198;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(3.1rem, 8vw, 7.4rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            animation: textReveal 1.4s ease;
+        }
+
+        @keyframes textReveal {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-copy {
+            max-width: 550px;
+            margin: 24px 0 0;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: clamp(1rem, 2vw, 1.18rem);
+        }
+
+        .hero-actions {
+            margin-top: 34px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            min-height: 48px;
+            padding: 0 22px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--ink);
+        }
+
+        .btn-dark {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .btn-ghost {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-panel {
+            justify-self: end;
+            width: min(100%, 330px);
+            border-left: 1px solid rgba(255, 255, 255, 0.28);
+            padding-left: 24px;
+        }
+
+        .hero-panel strong {
+            display: block;
+            font-size: 2.1rem;
+            line-height: 1;
+        }
+
+        .hero-panel span {
+            display: block;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .section {
+            padding: 96px 0;
+        }
+
+        .section.tight {
+            padding-top: 62px;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 28px;
+            align-items: end;
+            margin-bottom: 34px;
+        }
+
+        .section-head h2 {
+            margin: 0;
+            max-width: 680px;
+            font-size: clamp(2rem, 4vw, 4rem);
+            line-height: 0.98;
+            letter-spacing: 0;
+        }
+
+        .section-head p {
+            margin: 0;
+            max-width: 390px;
+            color: rgba(21, 21, 21, 0.68);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            overflow: hidden;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: var(--shadow);
+        }
+
+        .product-media {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background: var(--stone);
+            overflow: hidden;
+        }
+
+        .product-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(.22,1,.36,1);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 7px 10px;
+            background: rgba(251, 250, 247, 0.9);
+            color: var(--ink);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .product-meta {
+            margin: 8px 0 16px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: rgba(21, 21, 21, 0.62);
+            font-weight: 600;
+        }
+
+        .swatches {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .swatch {
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(21, 21, 21, 0.2);
+            border-radius: 999px;
+        }
+
+        .add-btn {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid var(--ink);
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font-weight: 800;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .add-btn:hover {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .story-band {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        .story-layout {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .story-media {
+            min-height: 620px;
+            background: url("https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1300&q=85") center / cover;
+        }
+
+        .story-content h2 {
+            margin: 0;
+            max-width: 620px;
+            font-size: clamp(2.2rem, 5vw, 5.4rem);
+            line-height: 0.96;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .story-content p {
+            max-width: 560px;
+            color: rgba(255, 255, 255, 0.74);
+            font-size: 1.05rem;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 36px;
+        }
+
+        .feature {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 18px;
+            min-height: 132px;
+        }
+
+        .feature strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #d9c198;
+        }
+
+        .editorial {
+            background: var(--stone);
+        }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .edit-tile {
+            min-height: 330px;
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            isolation: isolate;
+        }
+
+        .edit-tile::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: var(--image) center / cover;
+            transition: transform 0.5s ease;
+        }
+
+        .edit-tile::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.08));
+        }
+
+        .edit-tile:hover::before {
+            transform: scale(1.06);
+        }
+
+        .edit-tile.large {
+            grid-column: span 2;
+        }
+
+        .edit-tile h3 {
+            margin: 0;
+            font-size: 1.45rem;
+            line-height: 1.05;
+        }
+
+        .journal {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 44px;
+            align-items: center;
+        }
+
+        .journal-image {
+            aspect-ratio: 16 / 11;
+            background: url("https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1500&q=85") center / cover;
+        }
+
+        .journal h2 {
+            margin: 0;
+            font-size: clamp(2.1rem, 4vw, 4.4rem);
+            line-height: 0.98;
+            letter-spacing: 0;
+        }
+
+        .journal p {
+            color: rgba(21, 21, 21, 0.66);
+            font-size: 1.05rem;
+        }
+
+        .newsletter {
+            background: var(--ink);
+            color: var(--white);
+            padding: 56px 0;
+        }
+
+        .newsletter-inner {
+            display: grid;
+            grid-template-columns: 1fr minmax(280px, 460px);
+            gap: 28px;
+            align-items: center;
+        }
+
+        .newsletter h2 {
+            margin: 0;
+            font-size: clamp(1.8rem, 3vw, 3.2rem);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .signup {
+            display: flex;
+            gap: 10px;
+        }
+
+        .signup input {
+            min-width: 0;
+            flex: 1;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            padding: 0 14px;
+            outline: none;
+        }
+
+        .signup input::placeholder {
+            color: rgba(255, 255, 255, 0.58);
+        }
+
+        .site-footer {
+            background: #111;
+            color: rgba(255, 255, 255, 0.72);
+            padding: 38px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .toast {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 30;
+            background: var(--ink);
+            color: var(--white);
+            padding: 13px 16px;
+            box-shadow: var(--shadow);
+            transform: translateY(16px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            font-weight: 700;
+        }
+
+        .toast.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .menu-btn {
+                display: grid;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 74px;
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 22px 16px 28px;
+                background: rgba(251, 250, 247, 0.98);
+                color: var(--ink);
+                border-bottom: 1px solid var(--line);
+            }
+
+            .site-header.is-open .nav-links {
+                display: flex;
+            }
+
+            .hero-inner,
+            .story-layout,
+            .journal,
+            .newsletter-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel {
+                justify-self: start;
+                width: 100%;
+                max-width: 420px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .editorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story-media {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                width: calc(100% - 24px);
+                min-height: 66px;
+            }
+
+            .brand {
+                font-size: 0.78rem;
+            }
+
+            .brand-mark {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-links {
+                top: 66px;
+            }
+
+            .hero {
+                min-height: 92svh;
+            }
+
+            .hero-inner {
+                width: calc(100% - 24px);
+                padding-top: 112px;
+            }
+
+            .hero-actions,
+            .signup {
+                flex-direction: column;
+            }
+
+            .btn,
+            .signup .btn {
+                width: 100%;
+            }
+
+            .section {
+                padding: 68px 0;
+            }
+
+            .container {
+                width: calc(100% - 24px);
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-head p {
+                margin-top: 14px;
+            }
+
+            .product-grid,
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edit-tile.large {
+                grid-column: span 1;
+            }
+
+            .footer-inner {
+                display: block;
+            }
+
+            .footer-links {
+                margin-top: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="#top" aria-label="JYDA home">
+                <span class="brand-mark">JY</span>
+                <span>JYDA FOOTWEARS</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a class="nav-link" href="#collection">Collection</a>
+                <a class="nav-link" href="#craft">Craft</a>
+                <a class="nav-link" href="#edits">Edits</a>
+                <a class="nav-link" href="#journal">Journal</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" type="button" aria-label="Search">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+                <button class="icon-btn" type="button" aria-label="Shopping bag">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M6 8h12l-1 13H7L6 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+                        <path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section class="hero" aria-label="JYDA hero">
+            <div class="hero-inner">
+                <div>
+                    <p class="eyebrow">Luxury performance footwear</p>
+                    <h1>JYDA FOOTWEARS.</h1>
+                    <p class="hero-copy">Architectural sneakers, hand-finished leather, and all-day cushioning built for the cleanest step in the room.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#collection">Shop New Drop</a>
+                        <a class="btn btn-ghost" href="#craft">Explore Craft</a>
+                    </div>
+                </div>
+                <div class="hero-panel">
+                    <strong>01 / 75</strong>
+                    <span>Each launch is made in limited numbered pairs with replaceable insoles, stitched panels, and premium outsole grip.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tight" id="collection">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Signature shoes for every kind of arrival.</h2>
+                    <p>Three refined silhouettes, balanced between street energy and formal polish. Select your pair, add it to the bag, and keep the page moving.</p>
+                </div>
+                <div class="product-grid">
+                    <article class="product-card">
+                        <div class="product-media">
+                            <span class="tag">New</span>
+                            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=900&q=85" alt="White premium sneaker with beige sole">
+                        </div>
+                        <div class="product-info">
+                            <h3>Monarch Low</h3>
+                            <div class="product-meta"><span>Italian leather</span><strong>₹12,900</strong></div>
+                            <div class="swatches" aria-label="Available colors">
+                                <span class="swatch" style="background:#f5f1e9"></span>
+                                <span class="swatch" style="background:#1e1d1b"></span>
+                                <span class="swatch" style="background:#b08a45"></span>
+                            </div>
+                            <button class="add-btn" type="button" data-product="Monarch Low">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-media">
+                            <span class="tag">Limited</span>
+                            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=900&q=85" alt="Dark athletic shoe on a clean studio background">
+                        </div>
+                        <div class="product-info">
+                            <h3>Vanta Runner</h3>
+                            <div class="product-meta"><span>Carbon plate</span><strong>₹15,500</strong></div>
+                            <div class="swatches" aria-label="Available colors">
+                                <span class="swatch" style="background:#161616"></span>
+                                <span class="swatch" style="background:#65766b"></span>
+                                <span class="swatch" style="background:#ded7ca"></span>
+                            </div>
+                            <button class="add-btn" type="button" data-product="Vanta Runner">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-media">
+                            <span class="tag">Best Seller</span>
+                            <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?auto=format&fit=crop&w=900&q=85" alt="Tan luxury sneaker against a studio surface">
+                        </div>
+                        <div class="product-info">
+                            <h3>Sable Court</h3>
+                            <div class="product-meta"><span>Suede finish</span><strong>₹11,800</strong></div>
+                            <div class="swatches" aria-label="Available colors">
+                                <span class="swatch" style="background:#a65f46"></span>
+                                <span class="swatch" style="background:#e8dfd0"></span>
+                                <span class="swatch" style="background:#2a2926"></span>
+                            </div>
+                            <button class="add-btn" type="button" data-product="Sable Court">Add to Bag</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section story-band" id="craft">
+            <div class="container story-layout">
+                <div class="story-media" role="img" aria-label="Premium sneakers displayed in a studio"></div>
+                <div class="story-content">
+                    <p class="eyebrow">Craft language</p>
+                    <h2>Quiet luxury, engineered for movement.</h2>
+                    <p>Every JYDA pair uses layered cushioning, sculpted heel support, and panels cut to reduce bulk. The result feels athletic but dresses like a designer object.</p>
+                    <div class="feature-list">
+                        <div class="feature">
+                            <strong>01</strong>
+                            <span>Full-grain leather selected for clean grain, rich tone, and natural durability.</span>
+                        </div>
+                        <div class="feature">
+                            <strong>02</strong>
+                            <span>Responsive footbed with a removable comfort insert for long city days.</span>
+                        </div>
+                        <div class="feature">
+                            <strong>03</strong>
+                            <span>Low-profile outsole with confident grip and an understated luxury edge.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section editorial" id="edits">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Curated by mood, not noise.</h2>
+                    <p>Shop by the way you want the day to feel: sharp, fast, relaxed, or rare.</p>
+                </div>
+                <div class="editorial-grid">
+                    <a class="edit-tile large" href="#collection" style="--image:url('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1200&q=85')">
+                        <h3>The Minimal Rotation</h3>
+                    </a>
+                    <a class="edit-tile" href="#collection" style="--image:url('https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=900&q=85')">
+                        <h3>Weekend Suede</h3>
+                    </a>
+                    <a class="edit-tile" href="#collection" style="--image:url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=900&q=85')">
+                        <h3>Runway Black</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="journal">
+            <div class="container journal">
+                <div class="journal-image" role="img" aria-label="Premium sneaker detail"></div>
+                <div>
+                    <p class="eyebrow">The journal</p>
+                    <h2>How to build a premium sneaker wardrobe.</h2>
+                    <p>Start with one white leather pair, one darker statement pair, and one relaxed suede option. Keep silhouettes clean and materials rich, and your outfits instantly feel more finished.</p>
+                    <a class="btn btn-dark" href="#collection">Build Your Rotation</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="container newsletter-inner">
+                <div>
+                    <p class="eyebrow">Members first</p>
+                    <h2>Get early access to limited drops.</h2>
+                </div>
+                <form class="signup" id="signupForm">
+                    <input type="email" placeholder="Email address" aria-label="Email address" required>
+                    <button class="btn btn-primary" type="submit">Join List</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© 2026 JYDA FOOTWEARS. Premium footwear concept.</span>
+            <div class="footer-links">
+                <a href="#collection">Shop</a>
+                <a href="#craft">Materials</a>
+                <a href="#journal">Care Guide</a>
+                <a href="mailto:jatiaanbaha@gmail.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Added to bag</div>
+
+    <script>
+        const header = document.getElementById("siteHeader");
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+        const cartCount = document.getElementById("cartCount");
+        const toast = document.getElementById("toast");
+        let bagCount = 0;
+        let toastTimer = null;
+
+        function updateHeader() {
+            header.classList.toggle("is-scrolled", window.scrollY > 12);
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("is-visible");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove("is-visible");
+            }, 1800);
+        }
+
+        window.addEventListener("scroll", updateHeader, { passive: true });
+        updateHeader();
+
+        menuBtn.addEventListener("click", () => {
+            const isOpen = header.classList.toggle("is-open");
+            document.body.classList.toggle("menu-open", isOpen);
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.addEventListener("click", (event) => {
+            if (event.target.matches("a")) {
+                header.classList.remove("is-open");
+                document.body.classList.remove("menu-open");
+                menuBtn.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        document.querySelectorAll(".add-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                bagCount += 1;
+                cartCount.textContent = String(bagCount);
+                showToast(`${button.dataset.product} added to bag`);
+            });
+        });
+
+        document.getElementById("signupForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const email = event.target.querySelector("input").value;
+            window.location.href = `mailto:jatiaanbaha@gmail.com?subject=New JYDA Subscriber&body=Customer Email: ${email}`;
+            event.currentTarget.reset();
+            showToast("Welcome to JYDA");
+        });
+    </script>
+</body>
+</html>
